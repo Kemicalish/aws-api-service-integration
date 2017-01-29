@@ -1,7 +1,7 @@
 const gulp = require('gulp');
-const apiId = 'hlx6uzy9w7';
+const apiId = '<YOUR_API_ID>'; //ex: hlx6uzy9w7
 const region = 'eu-west-1';
-const parentId = '0gotr8';
+const parentId = '<PARENT_RESOURCE_ID>'; //ex: 0gotr8 
 
 import {createOauthAccess} from './aws-integrate';
 
@@ -41,3 +41,4 @@ gulp.task('integrate', () => {
 //https://bitbucket.org/site/oauth2/authorize?client_id={YOUR_APP_CLIENT_ID}&response_type=code&scope=repo
 //and post back the code you receive to your new endpoint without compromising your credentials on the client side
 //Right now, as long as a service is supporting application/json authorization code (or web server) flow, you should be fine 
+//TODO: MOVE THIS and explain aws configure in Readme.md
