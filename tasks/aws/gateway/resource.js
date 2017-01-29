@@ -1,5 +1,18 @@
 import {aws} from '../aws';
 
+export const createApiResource = ({api, parentId, resourceName}) => new Promise((resolve, reject) => {
+    aws([
+        'apigateway',
+        'create-resource',
+        '--rest-api-id', api.id,
+        '--parent-id', parentId,
+        '--path-part', resourceName
+    ])
+    .then(resource => {
+        resolve({api, resourceName, parentId, resourceId: resource.id, ...resource});
+    }, reject);
+});
+
 export const getApiResource = ({api, resourceId}) => new Promise((resolve, reject) => {
     aws([
         'apigateway',
