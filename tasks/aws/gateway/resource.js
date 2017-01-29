@@ -51,3 +51,30 @@ export const putIntegrationRequestHttp = ({api, resourceId, httpMethod, url, map
     ])
     .then(resolve, reject);
 });
+
+export const putIntegrationResponse = ({api, resourceId, httpMethod}) => new Promise((resolve, reject) => {
+    aws([
+        'apigateway',
+        'put-integration-response',
+        '--rest-api-id', api.id,
+        '--resource-id', resourceId,
+        '--http-method', httpMethod,
+        '--status-code', 200,
+        '--response-templates', '{"application/json": "$input.json(\'$\')"}',
+        '--region', api.region
+    ])
+    .then(resolve, reject);
+});
+
+export const putResourceMethodResponse = ({api, resourceId, httpMethod}) => new Promise((resolve, reject) => {
+    aws([
+        'apigateway',
+        'put-method-response',
+        '--rest-api-id', api.id,
+        '--resource-id', resourceId,
+        '--http-method', httpMethod,
+        '--status-code', 200,
+        '--region', api.region
+    ])
+    .then(resolve, reject);
+});

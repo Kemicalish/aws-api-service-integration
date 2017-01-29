@@ -10,3 +10,12 @@ export const getApi = (apiId, region) => new Promise((resolve, reject) => aws([
         resolve({api: {...api, region}});
     }, reject)
 );
+
+export const createDeployApi = ({apiId, stageName}) => () => new Promise((resolve, reject) => aws([
+    'apigateway',
+    'create-deployment',
+    '--rest-api-id', apiId,
+    '--stage-name', stageName
+])
+    .then(resolve, reject)
+);
